@@ -26,6 +26,7 @@ const useLoginValidation = () => {
   });
 
   const onSubmit = async (data) => {
+    console.log(`reading data ${data}`);
     try {
       const result = await dispatch(loginUser(data)).unwrap();
       localStorage.setItem("token", result.token);
