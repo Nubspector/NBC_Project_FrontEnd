@@ -2,14 +2,21 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { login } from "../../api/auth/login";
 
 const initialState = {
-  user: localStorage.getItem("user")
-    ? JSON.parse(localStorage.getItem("user"))
-    : null,
+  user: (() => {
+    const user = localStorage.getItem("user");
+    try {
+      return user ? JSON.parse(user) : null;
+    } catch (error) {
+      console.error("Failed to parse user data from localStorage:", error);
+      return null; // Fallback jika parsing gagal
+    }
+  })(),
   token: localStorage.getItem("token") || null,
   role: localStorage.getItem("role") || null,
   loading: false,
   error: null,
 };
+
 
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
