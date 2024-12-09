@@ -1,5 +1,5 @@
 import axios from "axios"
-export const Base_URL = "http://nbc-be.saun.my.id"; //ganti local host dengan ip address klo mau postman
+export const Base_URL = "https://nbc-be.saun.my.id"; //ganti local host dengan ip address klo mau postman
 
 export const getImage = (image) => {
     return `${Base_URL}/storage/images/${image}`;
